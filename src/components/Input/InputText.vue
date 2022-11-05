@@ -1,32 +1,39 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import Validation from "./ts/Validation";
+import BaseInput from "./BaseInput.vue";
 
 const props = withDefaults(
   defineProps<{
-    rules?: string | Array<string>;
     modelValue: string;
+    rules?: string | Array<string>;
   }>(),
   {
-    rules: "",
     modelValue: "",
+    rules: "",
   }
 );
-
 const emit = defineEmits(["update:modelValue", "error"]);
 
-const validate = new Validation(props.rules);
 const originValue = ref(props.modelValue);
 
 watch(
   () => originValue.value,
   (value) => {
-    const result = validate.check(value);
     emit("update:modelValue", value);
-    emit("error", typeof result === "string" ? result : "");
   }
 );
+
+const onError = (event: any) => {
+  console.log(event);
+
+  emit("error", event);
+};
 </script>
 <template>
-  <input v-model="originValue" />
+  <base-input
+    type="text"
+    v-model="originValue"
+    :rules="props.rules"
+    @error="onError"
+  />
 </template>
