@@ -81,6 +81,7 @@ export default class Validation {
                         this.message = '数値のみ入力して下さい';
                         return false;
                     }
+                    break;
 
                 case 'password':
                     if (!this.password(value)) {

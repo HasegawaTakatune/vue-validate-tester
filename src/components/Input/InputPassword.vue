@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import BaseInput from "./BaseInput.vue";
 
 const props = withDefaults(
   defineProps<{
+    id: string;
     modelValue: string;
     error?: string;
   }>(),
@@ -36,6 +38,7 @@ const onError = (event: any) => {
 </script>
 <template>
   <base-input
+    :id="props.id"
     type="password"
     v-model="originValue"
     rules="password"

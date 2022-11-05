@@ -4,6 +4,7 @@ import BaseInput from "./BaseInput.vue";
 
 const props = withDefaults(
   defineProps<{
+    id: string;
     modelValue: string;
     rules?: string | Array<string>;
   }>(),
@@ -31,6 +32,7 @@ const onError = (event: any) => {
 </script>
 <template>
   <base-input
+    :id="props.id"
     type="text"
     v-model="originValue"
     :rules="props.rules"
