@@ -28,14 +28,11 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    /* display: flex; */
     text-align: -webkit-center;
     margin-top: 8rem;
   }
 
   #app {
-    /* display: grid; */
-    /* grid-template-columns: 500px 1fr; */
     padding: 0 2rem;
   }
 }
