@@ -23,7 +23,7 @@ watch(
   (value) => {
     const result = validate.check(value);
     emit("update:modelValue", value);
-    emit("error", typeof result === "string" ? result : "");
+    emit("error", result);
   }
 );
 </script>

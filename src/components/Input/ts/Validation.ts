@@ -43,7 +43,7 @@ export default class Validation {
         })
     }
 
-    public check(target: string | number): boolean | string {
+    public check(target: string | number): string {
         this.message = null;
         const value = target?.toString() ?? target;
         this.operation.forEach(op => {
@@ -108,7 +108,7 @@ export default class Validation {
             }
         });
 
-        return this.message ?? true;
+        return this.message ?? '';
     }
 
     private required(target: string): boolean {
