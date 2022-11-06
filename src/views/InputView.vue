@@ -28,7 +28,6 @@ const errors = reactive({
       <input-text
         id="input-alpha"
         :class="{ 'input-error': errors.alpha }"
-        autocomplete="off"
         v-model="form.alpha"
         rules="required|alpha"
         @error="errors.alpha = $event"
@@ -43,7 +42,6 @@ const errors = reactive({
       <input-text
         id="input-hira"
         :class="{ 'input-error': errors.hira }"
-        autocomplete="off"
         v-model="form.hira"
         rules="required|hiragana"
         @error="errors.hira = $event"
@@ -58,7 +56,6 @@ const errors = reactive({
       <input-text
         id="input-kata"
         :class="{ 'input-error': errors.kana }"
-        autocomplete="off"
         v-model="form.kana"
         rules="required|katakana"
         @error="errors.kana = $event"
@@ -73,7 +70,6 @@ const errors = reactive({
       <input-text
         id="input-numeric"
         :class="{ 'input-error': errors.numeric }"
-        autocomplete="off"
         v-model="form.numeric"
         rules="required|numeric"
         @error="errors.numeric = $event"
@@ -88,7 +84,6 @@ const errors = reactive({
       <input-text
         id="input-length"
         :class="{ 'input-error': errors.length }"
-        autocomplete="off"
         v-model="form.length"
         rules="required|max:10|min:3"
         @error="errors.length = $event"
@@ -99,11 +94,10 @@ const errors = reactive({
     </div>
 
     <div class="input-wrapper">
-      <label for="input-password" class="input-label">Password</label>
+      <label for="input-pwd" class="input-label">Password</label>
       <input-password
-        id="input-password"
-        :class="{ 'input-error': errors.password }"
-        autocomplete="off"
+        id="input-pwd"
+        :class="errors.password ? 'input-error' : ''"
         v-model="form.password"
         @error="errors.password = $event"
       />

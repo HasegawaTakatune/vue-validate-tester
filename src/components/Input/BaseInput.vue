@@ -19,6 +19,7 @@ const emit = defineEmits(["update:modelValue", "error"]);
 // 入力チェックインスタンス
 const validate = new Validation(props.rules);
 const originValue = ref(props.modelValue);
+const inputBase = ref();
 
 watch(
   () => originValue.value,
@@ -29,7 +30,14 @@ watch(
     emit("error", result);
   }
 );
+
+// フォーカス
+const inputFocus = () => {
+  inputBase.value.focus();
+};
+
+defineExpose({ inputFocus });
 </script>
 <template>
-  <input v-model="originValue" />
+  <input v-model="originValue" ref="inputBase" autocomplete="off" />
 </template>

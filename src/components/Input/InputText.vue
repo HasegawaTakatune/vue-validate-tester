@@ -5,7 +5,7 @@ import BaseInput from "./BaseInput.vue";
 const props = withDefaults(
   defineProps<{
     id: string;
-    modelValue: string;
+    modelValue?: string;
     rules?: string | Array<string>;
   }>(),
   {
