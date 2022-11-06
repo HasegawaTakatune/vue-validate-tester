@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import Tester from "@/components/Input/ts/Tester";
-import type { Result, ResultCase } from "@/components/Input/ts/Tester";
+import type { Result } from "@/components/Input/ts/Tester";
 
+// テストケース
 const cases = ref<Array<string>>([
   "",
   "1234567890",
@@ -20,23 +21,30 @@ const cases = ref<Array<string>>([
   "A?b/3-1qaz2A?b/3-1qaz2A?b/3-1qaz2",
 ]);
 
+// テスト処理インスタンス
 const tester = new Tester();
+// バリデーションチェックの結果格納
 const results = ref<Array<Result>>([]);
 
+// 連番フォーマット
 const formatNumber = (value: number) => {
   return `00${value}`.slice(-3);
 };
 
+// テストケースの削除
 const removeCase = (index: number) => {
   cases.value.splice(index, 1);
 };
 
+// テストケースの追加
 const addCase = () => {
   cases.value.push("");
 };
 
+// テスト実行
 const tryTest = () => {
   results.value = [];
+
   tester.check(cases.value).then((value) => {
     results.value = value;
   });

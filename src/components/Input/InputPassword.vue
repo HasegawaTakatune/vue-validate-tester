@@ -6,36 +6,30 @@ const props = withDefaults(
   defineProps<{
     id: string;
     modelValue: string;
-    error?: string;
   }>(),
   {
     modelValue: "",
-    error: "",
   }
 );
 const emit = defineEmits(["update:modelValue", "error"]);
 
 const originValue = ref(props.modelValue);
-const error = ref(props.error);
+// パスワード表示切り替えフラグ
 const show = ref(false);
 
 watch(
   () => originValue.value,
   (value) => {
+    // 入力値を返す
     emit("update:modelValue", value);
   }
 );
 
-watch(
-  () => error.value,
-  (value) => {
-    emit("error", value);
-  }
-);
-
+// 入力タイプ
 const type = computed(() => (show.value ? "text" : "password"));
+// ボタンステータス
 const state = computed(() => (show.value ? "hide" : "show"));
-
+// 基底コンポーネントからのメッセージをそのまま返す
 const onError = (event: any) => {
   emit("error", event);
 };

@@ -20,13 +20,12 @@ const originValue = ref(props.modelValue);
 watch(
   () => originValue.value,
   (value) => {
+    // 入力値を返す
     emit("update:modelValue", value);
   }
 );
-
+// 基底コンポーネントからのメッセージをそのまま返す
 const onError = (event: any) => {
-  console.log(event);
-
   emit("error", event);
 };
 </script>
