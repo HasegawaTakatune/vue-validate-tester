@@ -36,14 +36,11 @@ const addCase = () => {
 };
 
 const tryTest = () => {
+  results.value = [];
   tester.check(cases.value).then((value) => {
     results.value = value;
   });
 };
-
-onMounted(() => {
-  tryTest();
-});
 </script>
 <template>
   <main class="wrapper">
@@ -84,7 +81,9 @@ onMounted(() => {
     <div class="result-wrapper">
       <div class="result-header">
         <h2>Results</h2>
-        <button @click="tryTest">Try Test</button>
+        <div class="button_solid001" @click="tryTest">
+          <span>Try Test</span>
+        </div>
       </div>
       <div>
         <details
@@ -117,6 +116,7 @@ onMounted(() => {
 <style scoped>
 .wrapper {
   display: flex;
+  justify-content: center;
 }
 
 .test-case-wrapper {
@@ -145,9 +145,10 @@ onMounted(() => {
 }
 
 .result-wrapper {
-  width: 100%;
-
+  width: 200px;
+  text-align: left;
   margin-bottom: 1rem;
+  white-space: pre;
 }
 
 .result-header {
@@ -165,6 +166,7 @@ onMounted(() => {
 
 .result-message {
   font-weight: 200;
+  white-space: unset;
 }
 
 .result-success {
@@ -173,5 +175,26 @@ onMounted(() => {
 
 .result-error {
   color: rgb(255, 55, 55);
+}
+
+.button_solid001 span {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 240px;
+  padding: 5px 5px;
+  margin: 0 10px;
+  color: #bcbcbc;
+  transition: 0.3s ease-in-out;
+  font-weight: 600;
+  background: rgb(34, 34, 34);
+  filter: drop-shadow(0px 2px 4px #ccc);
+  border-radius: 3px;
+}
+.button_solid001 span:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgb(0 0 0 / 15%), 0 0 5px rgb(0 0 0 / 10%);
 }
 </style>

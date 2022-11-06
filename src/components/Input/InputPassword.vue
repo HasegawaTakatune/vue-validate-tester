@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, computed, watch } from "vue";
 import BaseInput from "./BaseInput.vue";
 
 const props = withDefaults(
@@ -17,6 +17,7 @@ const emit = defineEmits(["update:modelValue", "error"]);
 
 const originValue = ref(props.modelValue);
 const error = ref(props.error);
+const show = ref(false);
 
 watch(
   () => originValue.value,
@@ -32,6 +33,9 @@ watch(
   }
 );
 
+const type = computed(() => (show.value ? "text" : "password"));
+const state = computed(() => (show.value ? "hide" : "show"));
+
 const onError = (event: any) => {
   emit("error", event);
 };
@@ -39,9 +43,22 @@ const onError = (event: any) => {
 <template>
   <base-input
     :id="props.id"
-    type="password"
+    class="wrapper"
+    :type="type"
     v-model="originValue"
     rules="password"
     @error="onError"
   />
+  <button class="wrapper state-button" @click="show = !show">
+    {{ state }}
+  </button>
 </template>
+
+<style scoped>
+.wrapper {
+  height: 21.33px;
+}
+.state-button {
+  width: 60px;
+}
+</style>
